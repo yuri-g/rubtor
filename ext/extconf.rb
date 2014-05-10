@@ -1,8 +1,6 @@
 require 'mkmf'
 
-puts RbConfig::CONFIG['CPP']
 RbConfig::CONFIG['CPP'] = RbConfig::CONFIG['CPP'].gsub('gcc', 'g++')
-#have_library('stdc++')
 LIBDIR = RbConfig::CONFIG['libdir']
 INCLUDEDIR = RbConfig::CONFIG['includedir']
 
@@ -26,8 +24,8 @@ headers = ['torrent/object_stream.h', 'torrent/object.h', 'tr1/functional',
 check = headers.map { |h| find_header(h) }
 
 abort 'libtorrent is missing' if check.include?(false)
-
 # check different function?
 abort 'libtorrent is missing' unless find_library('torrent', 'main')
 
-create_makefile('rubtor/rubtor')
+$CPPFLAGS  << '-stdlib=libstdc++'
+create_makefile('rubtor')
