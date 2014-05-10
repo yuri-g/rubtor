@@ -1,6 +1,8 @@
 require 'mkmf'
 
+puts RbConfig::CONFIG['CPP']
 RbConfig::CONFIG['CPP'] = RbConfig::CONFIG['CPP'].gsub('gcc', 'g++')
+#have_library('stdc++')
 LIBDIR = RbConfig::CONFIG['libdir']
 INCLUDEDIR = RbConfig::CONFIG['includedir']
 
@@ -18,7 +20,7 @@ LIB_DIRS = [
   '/usr/lib'
 ]
 dir_config('libtorrent', HEADER_DIRS, LIB_DIRS)
-headers = ['torrent/object_stream.h', 'torrent/object.h',
+headers = ['torrent/object_stream.h', 'torrent/object.h', 'tr1/functional',
            'torrent/http.h', 'torrent/poll_select.h',
            'torrent/connection_manager.h', 'torrent/download_info.h']
 check = headers.map { |h| find_header(h) }
