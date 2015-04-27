@@ -8,5 +8,5 @@ Gem::Specification.new do |s|
   s.authors = ['yuri-g']
   s.files = Dir['lib/**/*.rb'] + Dir['ext/**/*.cpp'] + Dir['ext/**/extconf.rb'] + Dir['ext/**/*.h']
   s.require_paths = ['lib', 'ext']
-  s.extensions = Dir['ext/**/extconf.rb']
+  s.extensions << 'ext/extconf.rb'
 end
